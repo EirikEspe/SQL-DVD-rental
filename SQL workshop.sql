@@ -47,32 +47,32 @@ FROM film
 LIMIT 5;
 
 ---- First five films ordered by release year ----
-----				from old to new 									----
+----		from old to new 	      ----
 SELECT title, release_year
 FROM film
 ORDER BY release_year
 LIMIT 5;
 
 ---- Rounded average amount of payment from ----
-----		customer ID between 5 and 10 				----
+----	  customer ID between 5 and 10 	    ----
 SELECT ROUND(AVG(amount), 2) AS "Avg. payment"
 FROM payment
 WHERE customer_id BETWEEN 5 AND 10
 
 ---- Information about customers except ----
-----				customer 1 and 2 						----
+----	      customer 1 and 2 		----
 SELECT *
 FROM customer
 WHERE customer_id NOT IN(1, 2)
 
 ---- Number of titles from film where title ----
-----					starts	with J								----
+----		starts	with J		    ----
 SELECT COUNT (DISTINCT title) AS "Number of titles J.."
 FROM film
 WHERE title LIKE 'J%'
 
 ---- Number of titles from film where title ----
-----				does not start	with J					----
+----		does not start with J	    ----
 SELECT COUNT (DISTINCT title) AS "Number of titles other"
 FROM film
 WHERE title NOT LIKE 'J%'
@@ -88,7 +88,7 @@ LIMIT 10;
 SELECT customer_id, first_name, last_name
 FROM customer
 WHERE customer_id IN (148, 526, 236, 144, 75,
-					  197, 469, 468, 137, 178);
+		      197, 469, 468, 137, 178);
 
 ---- Which rating groups have an average ----
 ---- rental duration of more than 5 days ----
@@ -99,8 +99,8 @@ HAVING AVG(rental_duration) > 5
 ORDER BY rental_duration DESC;
 
 
----- Create a database in which you have the name ----
----- 	and surname of each person, their email, 		----
+---- Create a database in which you have the name   ----
+---- 	and surname of each person, their email,    ----
 ---- 	their address and the total cost of rentals ----
 SELECT customer.customer_id, customer.first_name,
 customer.last_name, customer.email, customer.address_id,
@@ -111,8 +111,8 @@ LEFT JOIN payment ON customer.customer_id = payment.customer_id
 GROUP BY customer.customer_id, payment.customer_id;
 ----- hhh-----
 
----- How many copies are there of each film in ----
-----							store 1 										 ----
+---- How many copies are there of each film ----
+----		in store 1 		    ----
 SELECT store.store_id, inventory.film_id, film.title,
 COUNT(inventory.film_id) AS "Copies"
 FROM store
@@ -124,11 +124,13 @@ ORDER BY inventory.film_id;
 
 
 
----- 						Subqueries							----
+	       
+---- 				Subqueries					----
 
 
+	       
 ---- What are the names of customers who have made ----
-----			more than 40 payments										 ----
+----	     more than 40 payments		   ----
 SELECT customer.customer_id, customer.first_name,
 customer.last_name
 FROM customer
@@ -142,7 +144,7 @@ WHERE customer.customer_id IN(
 
 ---- Customer ID and number of payments ----
 ----	for customers that have made more ----
-----		than 40 payments								----
+----		than 40 payments	    ----
 SELECT payment.customer_id, COUNT(payment.payment_id) AS "# of payments"
 FROM payment
 GROUP BY payment.customer_id
@@ -150,7 +152,7 @@ HAVING COUNT(payment.payment_id) >= 40
 ORDER BY payment.customer_id
 
 ---- List of films rented the first 15 days ----
----- 						of July 2005								----
+---- 		of July 2005		    ----
 SELECT inventory.film_id
 FROM inventory
 WHERE inventory.inventory_id IN (
@@ -158,7 +160,7 @@ WHERE inventory.inventory_id IN (
 	SELECT rental.inventory_id
 	FROM rental
 	WHERE rental.rental_date BETWEEN '2005-07-01'
-								AND '2005-07-15'
+				     AND '2005-07-15'
 );
 
 
@@ -167,4 +169,4 @@ SELECT inventory.film_id, rental.rental_date
 FROM inventory
 LEFT JOIN rental ON inventory.inventory_id = rental.inventory_id
 WHERE rental.rental_date BETWEEN '2005-07-01'
-							  AND '2005-07-15'
+			     AND '2005-07-15';
