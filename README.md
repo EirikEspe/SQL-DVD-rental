@@ -1,6 +1,6 @@
 # SQL applied on the DVD-rental database
-This is a workshop for SQL, where I will cover basic statements, clauses and functions for making queries.
-I will use the DVD rental database, which represents the business processes of a DVD rental store.
+This is a workshop for SQL, where I will cover basic statements, clauses and functions for making queries. <br>
+I will use the PostgreSQL relational database management system (RDBMS), looking at the DVD rental database. <br> This database represents the business processes of a DVD rental store.
 
 
 ##### The DVD rental database has 15 tables
