@@ -22,3 +22,12 @@ I will use the PostgreSQL relational database management system (RDBMS), looking
 | city          | stores city names                                                             |
 | country       | stores the country names                                                      |
 | store         | contains the store data for the rental stores, like manager staff and address |
+
+
+<br />
+<br />
+To see how the different tables are connected and for reference while practicing with the database, it will be helpful to review this diagram
+
+#### Entity Relationhip diagram
+
+![](dvd_rental_database_ER_diagram.png)
